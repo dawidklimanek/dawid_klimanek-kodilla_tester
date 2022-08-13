@@ -14,12 +14,11 @@ public class Grades {
         this.grades[this.size] = value;
         this.size++;
     }
-    double srednia(int a, int b, int c) {
-        double result = (a + b) / c;
-        return result;
-    }
-    public int[] getGrades() {
-        return grades;
+
+    public double srednia() {
+        double suma = 0;
+        for (int d : grades)
+            suma += d;
+        return suma / grades.length;
     }
 }
-
