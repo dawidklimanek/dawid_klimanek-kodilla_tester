@@ -17,9 +17,9 @@ public class Grades {
 
     public double sre() {
         double suma = 0;
-        for (int size: grades)
-            suma += this.size;
-        return suma / grades.length;
+        for (int i=0; i<this.size;i++)
+            suma += grades[i];
+        return (sre());
     }
     public int lastSize;
     int getSize(){
