@@ -21,4 +21,13 @@ public class Grades {
             suma += d;
         return suma / grades.length;
     }
+    public int ostatniaOcena;
+    int getSize(){
+        return this.size;
+    }
+    void setSize(int size){
+        if(size>=1&&size<=6){
+            this.size=size;
+        }
+    }
 }
