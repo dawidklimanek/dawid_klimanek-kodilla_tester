@@ -15,10 +15,19 @@ public class Grades {
         this.size++;
     }
 
-    public double srednia() {
+    public double sre() {
         double suma = 0;
-        for (int d : grades)
-            suma += d;
+        for (int size: grades)
+            suma += this.size;
         return suma / grades.length;
+    }
+    public int lastSize;
+    int getSize(){
+        return this.size;
+    }
+    void setSize(int size){
+        if(size>=1&&size<=6){
+            this.size=size;
+        }
     }
 }
