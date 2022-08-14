@@ -1,12 +1,24 @@
 public class User {
-            String x;
-            int y;
-                    User (String x, int y){
-                        this.x= x;
-                        this.y=y;
+           public String name;
+           public String getName(){
+               return name;
+           }
+           public void setName(String c){
+               this.name=c;
+           }
+           private int age;
+           public int getAge(){
+               return age;
+           }
+           public void setAge(int a){
+               this.age=a;
+           }
+
+                    User (String c, int a){
+                        this.name= c;
+                        this.age=a;
                     }
     int result = 0;
-for (int i = 0; i < numbers.length; i++) {
-        result = result + numbers[i];
-    }
+for(int i=0; i=users.lenght;i ++)
+    result= result + users[i].getAge();
 }

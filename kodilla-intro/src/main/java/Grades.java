@@ -1,6 +1,10 @@
+import java.util.Random;
+import java.util.Scanner;
+
 public class Grades {
     private int[] grades;
     private int size;
+    private Scanner input;
 
     public Grades() {
         this.grades = new int[10];
@@ -17,17 +21,21 @@ public class Grades {
 
     public double sre() {
         double suma = 0;
-        for (int i=0; i<this.size;i++)
+        for (int i = 0; i < this.size; i++)
             suma += grades[i];
         return (sre());
     }
+
     public int lastSize;
-    int getSize(){
+
+    int getSize() {
         return this.size;
     }
-    void setSize(int size){
-        if(size>=1&&size<=6){
-            this.size=size;
+
+    void setSize(int size) {
+        for (int i = 0; i < 10; i++) {
+            int grade = input.nextInt();
+            grades. add(grade);
         }
     }
 }
