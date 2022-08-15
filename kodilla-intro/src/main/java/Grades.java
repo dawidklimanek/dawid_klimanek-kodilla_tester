@@ -19,23 +19,15 @@ public class Grades {
         this.size++;
     }
 
+    public int theLAstOne(int value) {
+        return (this.grades[this.size]);
+    }
+
     public double sre() {
         double suma = 0;
         for (int i = 0; i < this.size; i++)
             suma += grades[i];
         return (sre());
     }
-
-    public int lastSize;
-
-    int getSize() {
-        return this.size;
-    }
-
-    void setSize(int size) {
-        for (int i = 0; i < 10; i++) {
-            int grade = input.nextInt();
-            grades.add(grade);
-        }
-    }
 }
+
