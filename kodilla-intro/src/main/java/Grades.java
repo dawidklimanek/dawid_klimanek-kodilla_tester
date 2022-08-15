@@ -35,7 +35,7 @@ public class Grades {
     void setSize(int size) {
         for (int i = 0; i < 10; i++) {
             int grade = input.nextInt();
-            grades. add(grade);
+            grades.add(grade);
         }
     }
 }
