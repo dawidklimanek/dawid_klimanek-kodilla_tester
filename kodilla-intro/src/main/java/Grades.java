@@ -19,7 +19,7 @@ public class Grades {
         this.size++;
     }
 
-    public int theLAstOne(int value) {
+    public int theLAstOne() {
         return (this.grades[this.size]);
     }
 
