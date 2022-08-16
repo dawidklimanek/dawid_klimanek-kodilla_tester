@@ -19,6 +19,7 @@ public class User {
                         this.age=a;
                     }
     int result = 0;
-for(int i=0; i=users.lenght;i ++)
+for(int i=0; i=users.length;i ++)
     result= result + users[i].getAge();
 }
+result=result/users.length;
