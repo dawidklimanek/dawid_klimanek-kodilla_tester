@@ -19,8 +19,9 @@ public class Grades {
         this.size++;
     }
 
-    public int theLAstOne() {
-        return (this.grades[this.size]);
+
+    public int theLAst() {
+        return this.grades[this.size-1];
     }
 
     public double sre() {
