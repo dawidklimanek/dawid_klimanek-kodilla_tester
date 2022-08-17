@@ -1,19 +1,19 @@
     public class Application {
-        public static void main(String[] args) {
+        public static void main (String[] args) throws java.lang.Exception
+        {
             String name = "Adam";
-            double age = 40.5;
-            double height = 178;
+            Double age = Double.valueOf(40.5);
+            Double height = Double.valueOf(178);
 
-            if (name != null) {
-                if (age > 30 && height > 160) {
-                    System.out.println("User is older than 30 and taller than 160cm");
+            if(name != null) {
+                if(age > 30 && height > 160) {
+                    System.out.println("User is older than 30 and higher then 160cm");
                 } else {
-                    System.out.println("User is 30 (or younger) or 160cm (or shorter)");
+                    System.out.println("User is younger than 30 or lower than 160cm");
                 }
             }
         }
     }
-
 
 
 
