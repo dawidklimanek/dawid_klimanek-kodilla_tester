@@ -21,11 +21,11 @@ public class Main {
             sum = sum + users.length;
             System.out.println(sum / users.length);
 
-            double sre = (double) sum / 3;
+            double sre = (double) sum / users.length;
             System.out.println(sre);
 
 
-                for (int i = 0; i < this.size; i++)
+
 
         }
     }
