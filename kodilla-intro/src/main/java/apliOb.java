@@ -4,8 +4,8 @@ import java.io.*;
 
 class apliOb {
     private String name;
-    private int age;
-    private int height;
+    private double age;
+    private double height;
 
     public apliOb(String name, double age, double height)
     {
