@@ -1,6 +1,6 @@
 public class Book {
-    private static String title;
-    private static String author;
+    private  String title;
+    private  String author;
 
     public Book(String title, String author) {
         this.title = title;
