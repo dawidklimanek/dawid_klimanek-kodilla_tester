@@ -4,11 +4,11 @@ import static java.lang.Math.PI;
 
 public abstract class  Shape {
 
-    protected double r;
+    protected double side;
 
 
-    public Shape(double r) {
-        this.r = r;
+    public Shape(double side) {
+        this.side = side;
 
         }
         public abstract double calcArea();

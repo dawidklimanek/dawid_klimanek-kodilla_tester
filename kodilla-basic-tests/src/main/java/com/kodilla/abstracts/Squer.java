@@ -5,17 +5,17 @@ import static java.lang.Math.PI;
 public class Squer extends Shape{
 
 
-    public Squer(double r) {
-        super(r);
+    public Squer(double side) {
+        super(side);
     }
 
     @Override
     public double calcArea() {
-        return 4*this.r;
+        return 4*this.side;
     }
 
     @Override
     public double calcPerimetr() {
-        return this.r*this.r;
+        return this.side*this.side;
     }
 }
