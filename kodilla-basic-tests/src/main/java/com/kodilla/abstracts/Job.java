@@ -6,14 +6,20 @@ package com.kodilla.abstracts;
         //która wyświetli obowiązki danej osoby w pracy.
 
 public abstract class Job {
-    private final Object duties;
+    private double salary;
+    private String responsibilities;
 
-    public Job(String duties) {
-        this.duties=duties;
-
+    public double getSalary() {
+        return salary;
     }
 
-    public abstract String sallery();
-    public abstract  String responsibilities();
-        public abstract void getduties();
+    public String getResponsibilities() {
+        return responsibilities;
+    }
+
+    public Job(double salary, String responsibilities) {
+        this.salary = salary;
+        this.responsibilities = responsibilities;
+    }
 }
+

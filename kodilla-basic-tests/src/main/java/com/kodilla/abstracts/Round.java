@@ -2,10 +2,10 @@ package com.kodilla.abstracts;
 
 public class Round extends Shape {
     public double PI = 3.141527;
-
+private  double side;
 
     public Round(double side) {
-        super(side);
+        this.side=side;
     }
 @Override
     public double calcArea() {

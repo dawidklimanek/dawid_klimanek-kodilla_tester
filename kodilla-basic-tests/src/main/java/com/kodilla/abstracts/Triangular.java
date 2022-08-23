@@ -1,10 +1,11 @@
 package com.kodilla.abstracts;
 
 public class Triangular extends Shape {
-protected double h;
+private double h;
+private double side;
 
     public Triangular(double side,double h) {
-        super(side);
+        this.side=side;
         this.h=h;
     }
 
