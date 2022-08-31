@@ -1,32 +1,19 @@
 package com.kodilla.bank.homework;
 
-import com.kodilla.school.Grades;
-
 public class Bank {
-    private int[] bankCashMachineTab;
-    private int size;
+    private CashMachine[] cashMachines;
 
+    public Bank(){
+        cashMachines = new CashMachine[2];
+        cashMachines[0] = new CashMachine(12345, 54321, 1000.0, 1200.0);
+        cashMachines[1] = new CashMachine(98765, 56789, 200.0, 200.0);
 
-    public Bank() {
-        this.bankCashMachineTab = new int[0];
-        this.size = 0;
-
-    }
-
-    public void add(int cashMachine) {
-        this.size++;
-        int[] newTab = new int[this.size];
-        System.arraycopy(bankCashMachineTab, 0, newTab, 0, bankCashMachineTab.length);
-        newTab[this.size - 1] = cashMachine;
-        this.bankCashMachineTab = newTab;
-    }
-    public int[]getBankCashMachineTab(){
-        return bankCashMachineTab;
 }
     private CashMachine numberOfNegativeTransactions;
     private CashMachine numberOfPositiveTransactions;
     private CashMachine sumOfPositiveTransactions;
     private  CashMachine sumOfNegativeTransaction;
+    private CashMachine balance;
 
     public Bank (String name){
 
@@ -34,6 +21,7 @@ public class Bank {
         this.numberOfPositiveTransactions=new CashMachine();
         this.sumOfPositiveTransactions= new CashMachine();
         this.sumOfNegativeTransaction= new CashMachine();
+        this.balance=new CashMachine();
     }
 
 }

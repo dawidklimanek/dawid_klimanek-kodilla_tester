@@ -15,6 +15,9 @@ public class CashMachine {
 
     }
 
+    public CashMachine(int i, int i1, double v, double v1) {
+    }
+
     public void add(int money) {
         this.size++;
         int[] newTab = new int[this.size];
