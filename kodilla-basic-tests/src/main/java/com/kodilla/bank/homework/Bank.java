@@ -3,25 +3,57 @@ package com.kodilla.bank.homework;
 public class Bank {
     private CashMachine[] cashMachines;
 
-    public Bank(){
-        cashMachines = new CashMachine[2];
-        cashMachines[0] = new CashMachine(12345, 54321, 1000.0, 1200.0);
-        cashMachines[1] = new CashMachine(98765, 56789, 200.0, 200.0);
+    public Bank(CashMachine[] cashMachines) {
+        this.cashMachines = cashMachines;
 
-}
-    private CashMachine numberOfNegativeTransactions;
-    private CashMachine numberOfPositiveTransactions;
-    private CashMachine sumOfPositiveTransactions;
-    private  CashMachine sumOfNegativeTransaction;
-    private CashMachine balance;
-
-    public Bank (String name){
-
-        this.numberOfNegativeTransactions=new CashMachine();
-        this.numberOfPositiveTransactions=new CashMachine();
-        this.sumOfPositiveTransactions= new CashMachine();
-        this.sumOfNegativeTransaction= new CashMachine();
-        this.balance=new CashMachine();
     }
 
+    public int avgOfNegativeTransactions() {
+        int avgOfNegative = 0;
+        int numberNegative = 0;
+        for (CashMachine cashMachine : cashMachines) {
+            avgOfNegative = avgOfNegative + cashMachine.sumOfNegativeTransaction();
+            numberNegative = numberNegative + cashMachine.numberOfNegativeTransactions();
+
+        }
+        if (numberNegative == 0) {
+            return avgOfNegative;
+        }
+
+        return (avgOfNegative / numberNegative);
+    }
+
+   public int avgOfPositiveTransaction() {
+       int avgOfPositive = 0;
+       int numberPositive = 0;
+       for (CashMachine cashMachine : cashMachines) {
+           avgOfPositive = avgOfPositive + cashMachine.sumOfPositiveTransactions();
+           numberPositive = numberPositive + cashMachine.numberOfNegativeTransactions();
+
+       }
+       if (numberPositive == 0) {
+           return avgOfPositive;
+       }
+
+       return (avgOfPositive / numberPositive);
+   }
+
+    public int sumOfNegativeTransaction() {
+        int sumNegative = 0;
+        for (CashMachine cashMachine : cashMachines) {
+            sumNegative = sumNegative + cashMachine.sumOfNegativeTransaction();
+        }
+        return sumNegative;
+    }
+
+    public int balance() {
+        int balance = 0;
+        for (CashMachine cashMachine : cashMachines) {
+            balance = balance + cashMachine.balance();
+
+        }
+        return balance;
+    }
 }
+
+
