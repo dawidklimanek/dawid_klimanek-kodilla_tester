@@ -5,70 +5,88 @@ package com.kodilla.bank.homework;
 // Dodaj metody zwracające saldo bankomatu oraz liczbę wykonanych transakcji.
 public class CashMachine {
 
-    private int[] cashMachine;
-    private int size;
+    public int[] transactions;
+    public int balance;
+    public int size;
+    private int value;
+    public int depositSize;
+    public int withdrawalSize;
+    public int depositSum;
+    public int withdrawalSum;
 
+    public CashMachine(int balance) {
 
-    public CashMachine() {
-        this.cashMachine = new int[0];
+        this.transactions = new int[0];
         this.size = 0;
-
+        this.balance = balance;
     }
-
-    public void add(int money) {
-        this.size++;
-        int[] newTab = new int[this.size];
-        System.arraycopy(cashMachine, 0, newTab, 0, cashMachine.length);
-        newTab[this.size - 1] = money;
-        this.cashMachine = newTab;
-
-    }
-
-    public int balance() {
-        int sum = 0;
-        for (int i = 0; i < size; i++) {
-            sum = sum + cashMachine[i];
+    public void addTransaction(int value) {
+        if (value == 0) {
+            return;
+        } else {
+            this.size++;
+            int[] newTransactions = new int[this.size];
+            System.arraycopy(transactions, 0, newTransactions, 0, transactions.length);
+            newTransactions[this.size - 1] = value;
+            this.transactions = newTransactions;
+            System.out.println("Bilans " + this.getBalance());
+            if (value > 0) {
+                this.depositSize++;
+                balance += value;
+                System.out.println("Wpłacono " + value);
+            } else if (value < 0) {
+                if (balance < value * -1) {
+                    System.out.println("Bankomat nie ma środków do wykonania wypłaty.");
+                } else {
+                    this.withdrawalSize++;
+                    balance += value;
+                    System.out.println("Wypłacono " + value * -1);
+                }
+            } else {
+                System.out.println("Nie zmieniono stanu konta.");
+            }
+            System.out.println("Saldo " + this.getBalance());
+            System.out.println("Lącznie wpłat: " + this.getDepositSize());
+            System.out.println("Lącznie wypłat: " + this.getWithdrawalSize());
+            System.out.println("Lącznie operacji: " + this.getSize());
         }
-        return sum;
     }
 
-    public int numberOfTransaction() {
+    public int getDepositSum() {
+        depositSum = 0;
+        for(int i = 0; i < transactions.length; i++) {
+            if(transactions[i] > 0) {
+                depositSum += transactions[i];
+            }
+        }
+        return depositSum;
+    }
+
+    public int getWithdrawalSum() {
+        withdrawalSum = 0;
+        for(int i = 0; i < transactions.length; i++) {
+            if(transactions[i] < 0) {
+                withdrawalSum += transactions[i];
+            }
+        }
+
+        return withdrawalSum;
+    }
+
+    public int[] getTransactions() {
+
+        return transactions;
+    }
+    public int getBalance() {
+        return balance;
+    }
+    public int getSize() {
         return size;
     }
-    public int numberOfNegativeTransactions(){
-        int negativeTransactions=0;
-        for (int i=0;i<size;i++){
-            if (this.cashMachine[i]<0){
-                negativeTransactions++;
-            }
-        }
-return negativeTransactions;
+    public int getDepositSize() {
+        return depositSize;
     }
-    public int numberOfPositiveTransactions() {
-        int positiveTransactions = 0;
-        for (int i = 0; i < size; i++) {
-            if (this.cashMachine[i] > 0) {
-                positiveTransactions++;
-            }
-        }
-        return positiveTransactions;
-    }
-    public int sumOfPositiveTransactions() {
-        int sumOfPositiveTransactions = 0;
-        for (int i = 0; i < size; i++) {
-            if (this.cashMachine[i] > 0) {
-                sumOfPositiveTransactions = sumOfPositiveTransactions + this.cashMachine[i];
-            }
-        }
-        return sumOfPositiveTransactions;
-    }
-    public int sumOfNegativeTransaction() {
-        int sumOfNegativeTransactions = 0;
-        for (int i = 0; i < size; i++) {
-            if (this.cashMachine[i] < 0) {
-                sumOfNegativeTransactions = sumOfNegativeTransactions + this.cashMachine[i];
-            }
-        }
-        return sumOfNegativeTransactions;
+    public int getWithdrawalSize() {
+        return withdrawalSize;
     }
 }
