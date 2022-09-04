@@ -27,7 +27,13 @@ public void increaseSpeed(int increase) {
 public void decreaseSpeed(int decrease) {
         speedDe = speed - decrease;
         }
-public void printStates() {
+
+        @Override
+        public void doRace(Car car) {
+
+        }
+
+        public void printStates() {
         System.out.println("Opel speed: " + speed + "   Opel Increase speed: "+ speedIn + "   Opel decrease speed:" + speedDe);
         }
         }

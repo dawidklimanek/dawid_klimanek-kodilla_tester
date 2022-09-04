@@ -13,7 +13,7 @@ public class Application {
         CashMachine[] cashMachines={cashMachine1,cashMachine2};
 
         Bank bank = new Bank(cashMachines);
-        System.out.println(bank.balance());
+        System.out.println(bank.bilans());
         System.out.println(bank.avgOfNegativeTransactions());
 
         //Car car = new Car(4,5) ;

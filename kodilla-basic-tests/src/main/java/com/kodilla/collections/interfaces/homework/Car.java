@@ -3,9 +3,9 @@ package com.kodilla.collections.interfaces.homework;
 public interface Car {
     int getSpeed();
 
-    void increaseSpeed(int a);
+    void increaseSpeed();
 
-    void decreaseSpeed(int a);
+    void decreaseSpeed();
     void doRace(Car car);
 }
 
