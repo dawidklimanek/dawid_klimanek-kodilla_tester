@@ -24,7 +24,7 @@ public class BMW implements Car {
 
     @Override
     public String toString() {
-        return "Peugeot{" +
+        return "BMW{" +
                 "speed=" + speed +
                 ", acceleration=" + acceleration +
                 ", brakes=" + brakes +

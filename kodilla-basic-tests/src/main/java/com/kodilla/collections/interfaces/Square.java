@@ -18,5 +18,12 @@ public class Square implements Shape {
 
             return 4 * width;
         }
+
+    @Override
+    public String toString() {
+        return "Square{" +
+                "width=" + width +
+                '}';
     }
+}
 

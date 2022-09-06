@@ -17,8 +17,18 @@ public class Triangle implements Shape{
         return width*height/2;
     }
 
+
+
     @Override
     public double getPerimeter() {
         return width +height+hypotenuse;
+    }
+    @Override
+    public String toString() {
+        return "Triangle{" +
+                "width=" + width +
+                ", height=" + height +
+                ", hypotenuse=" + hypotenuse +
+                '}';
     }
 }
