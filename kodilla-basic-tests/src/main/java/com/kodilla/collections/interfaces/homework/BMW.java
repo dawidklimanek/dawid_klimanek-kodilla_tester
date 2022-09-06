@@ -1,44 +1,33 @@
 package com.kodilla.collections.interfaces.homework;
 
 public class BMW implements Car {
-    private int speedIn;
-    private int speedDe;
-
-    private int speed;
-    private int bmwRace;
-
-    public BMW(int speed) {
-
+    double speed;
+    private double acceleration;
+    private double brakes;
+    public BMW(double speed, double acceleration, double brakes) {
         this.speed = speed;
-        this.speedIn = speedIn;
-        this.speedDe = speedDe;
+        this.acceleration = acceleration;
+        this.brakes = brakes;
     }
-
-
-    @Override
-    public int getSpeed() {
+    public double getSpeed() {
         return speed;
     }
-
-    @Override
-    public void increaseSpeed(int increase) {
-        speedIn = speed + increase;
+    public double getAcceleration() {
+        return acceleration;
+    }
+    public void increaseSpeed() {
+        speed*=acceleration;
+    }
+    public void decreaseSpeed() {
+        speed*=brakes;
     }
 
     @Override
-    public void decreaseSpeed(int decrease) {
-        speedDe = speed - decrease;
+    public String toString() {
+        return "Peugeot{" +
+                "speed=" + speed +
+                ", acceleration=" + acceleration +
+                ", brakes=" + brakes +
+                '}';
     }
-    @Override
-    public void doRace(Car car) {
-        bmwRace= speedIn*3;
-
 }
-    public void printStates() {
-        System.out.println("BMw speed: " + speed + "   Bmw Increase speed: "+ speedIn + "   BMW decrease speed:" + speedDe);
-    }
-}
-
-
-
-

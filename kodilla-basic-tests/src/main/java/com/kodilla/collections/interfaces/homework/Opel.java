@@ -2,42 +2,34 @@ package com.kodilla.collections.interfaces.homework;
 
 public class Opel implements Car {
 
-private int speedIn;
-private int speedDe;
 
-private int speed;
-public Opel(int speed) {
+                double speed;
+                private double acceleration;
+                private double brakes;
+                public Opel(double speed, double acceleration, double brakes) {
+                        this.speed = speed;
+                        this.acceleration = acceleration;
+                        this.brakes = brakes;
+                }
+                public double getSpeed() {
+                        return speed;
+                }
+                public double getAcceleration() {
+                        return acceleration;
+                }
+                public void increaseSpeed() {
+                        speed*=acceleration;
+                }
+                public void decreaseSpeed() {
+                        speed*=brakes;
+                }
 
-        this.speed = speed;
-        this.speedIn=speedIn;
+                @Override
+                public String toString() {
+                        return "Opel{" +
+                                "speed=" + speed +
+                                ", acceleration=" + acceleration +
+                                ", brakes=" + brakes +
+                                '}';
+                }
         }
-
-
-@Override
-public int getSpeed() {
-        return speed;
-        }
-
-@Override
-public void increaseSpeed(int increase) {
-        speedIn = speed + increase;
-        }
-
-@Override
-public void decreaseSpeed(int decrease) {
-        speedDe = speed - decrease;
-        }
-
-        @Override
-        public void doRace(Car car) {
-
-        }
-
-        public void printStates() {
-        System.out.println("Opel speed: " + speed + "   Opel Increase speed: "+ speedIn + "   Opel decrease speed:" + speedDe);
-        }
-        }
-
-
-
-

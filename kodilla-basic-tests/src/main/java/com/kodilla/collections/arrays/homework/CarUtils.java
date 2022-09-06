@@ -7,22 +7,23 @@ import com.kodilla.collections.interfaces.homework.Ford;
 import com.kodilla.collections.interfaces.homework.Opel;
 
 public class CarUtils {
-    public static void describeCar(Car car){
+    public static void describeCar(Car car) {
+        System.out.println("-----");
+        System.out.println("Car type: " + getCarName(car));
+        System.out.println("Car name: " + car.toString());
+        //System.out.println("Car acceleration: " + car.getAcceleration());
+        //System.out.println("Current car speed: " + car.getSpeed());
+    }
 
-            System.out.println("-------------------------");
-            System.out.println("Shape kind:" + getCarName(car));
-            System.out.println("Car speed:" + car.getSpeed());
-            System.out.println("Car increase speed:" + car.getSpeed()+car.increaseSpeed(20));
+    private static String getCarName(Car car) {
+        if(car instanceof Ford)
+            return "Ford";
+        else if(car instanceof Opel)
+            return "Opel";
+        else if(car instanceof BMW)
+            return "Peugeot";
+        else
+            return "Unknown car name.";
+    }
         }
-        private static String getCarName(Car car){
-            if (car instanceof BMW)
-                return "BMW";
-            else if (car instanceof Ford)
-                return "Ford";
-            else if (car instanceof Opel)
-                return "Opel";
-            else
-                return "Unknown Car name";
 
-        }
-}
