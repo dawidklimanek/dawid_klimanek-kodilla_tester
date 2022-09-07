@@ -6,13 +6,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class BankTestSuite {
+public class bts {
     Bank theBank = new Bank();
     CashMachine machineOne = new CashMachine(5000);
     CashMachine machineTwo = new CashMachine(2000);
     CashMachine machineThree = new CashMachine(3000);
 
-  
+
     @Test
     public void shouldHaveZeroLength() {
         theBank.getNumberOfMachines();
