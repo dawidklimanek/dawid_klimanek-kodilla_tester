@@ -40,4 +40,13 @@ public class Order {
     public int hashCode() {
         return Objects.hash(orderNumber, productName, quantity);
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderNumber='" + orderNumber + '\'' +
+                ", productName='" + productName + '\'' +
+                ", quantity=" + quantity +
+                '}';
+    }
 }
