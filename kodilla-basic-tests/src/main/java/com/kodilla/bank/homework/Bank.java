@@ -66,13 +66,15 @@ public class Bank {
     }
 
     public double totalDepositAverage() {
+        totalDeposits();
         if (totalDeposits == 0) {
             return 0;
         } else {
             depositAverage = 0;
             int sum = 0;
             for (int i = 0; i < theMachines.length; i++) {
-                sum += theMachines[i].depositSum;
+                sum += theMachines[i].getDepositSum();
+
             }
             depositAverage = sum / totalDeposits;
             return depositAverage;
@@ -80,13 +82,14 @@ public class Bank {
     }
 
     public double totalWithdrawalAverage() {
+        totalWithdrawals();
         if (totalWithdrawals == 0) {
             return 0;
         } else {
             withdrawalAverage = 0;
             int sum = 0;
             for (int i = 0; i < theMachines.length; i++) {
-                sum += theMachines[i].withdrawalSum;
+                sum += theMachines[i].getWithdrawalSum();
             }
             withdrawalAverage = sum / totalWithdrawals;
             return withdrawalAverage;

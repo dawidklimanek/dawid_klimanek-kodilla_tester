@@ -24,11 +24,11 @@ public class BankTestSuite {
         theBank.addMachine(machineOne);
         theBank.getNumberOfMachines();
         assertEquals(1, theBank.numberOfMachines);
-        assertEquals(5000,machineOne.balance);
+        assertEquals(5000,theBank.totalBalance());
         theBank.addMachine(machineTwo);
         theBank.getNumberOfMachines();
         assertEquals(2, theBank.numberOfMachines);
-        assertEquals(2000,machineTwo.balance);
+        assertEquals(7000,theBank.totalBalance());
     }
 
 
@@ -36,20 +36,14 @@ public class BankTestSuite {
     public void shouldAddTransaction() {
         theBank.addMachine(machineOne);
         machineOne.addTransaction(500);
-        assertEquals(500, machineOne.transactions[0]);
+        assertEquals(5500, theBank.totalBalance());
         machineOne.addTransaction(-200);
-        assertEquals(-200, machineOne.transactions[1]);
+        assertEquals(5300,theBank.totalBalance());
+        assertEquals(1,theBank.totalWithdrawals());
     }
 
 
-    @Test
-    public void shouldAddToBalanceFromBank() {
-        theBank.addMachine(machineOne);
-        machineOne.addTransaction(500);
-        assertEquals(5500, machineOne.balance);
-        machineOne.addTransaction(-200);
-        assertEquals(5300, machineOne.balance);
-    }
+
 
     @Test
     public void shouldCountTotalBalance() {
@@ -66,14 +60,13 @@ public class BankTestSuite {
     public void shouldCountTotalDeposit() {
         theBank.addMachine(machineOne);
         machineOne.addTransaction(300);
-        machineOne.getDepositSize();
+
         theBank.addMachine(machineTwo);
         machineTwo.addTransaction(200);
-        machineTwo.getDepositSize();
+
         theBank.addMachine(machineThree);
         machineThree.addTransaction(500);
-        machineThree.getDepositSize();
-        theBank.totalDeposits();
+
         assertEquals(3,theBank.totalDeposits());
     }
 
@@ -82,13 +75,13 @@ public class BankTestSuite {
     public void shouldCountTotalWithdrawal() {
         theBank.addMachine(machineOne);
         machineOne.addTransaction(-300);
-        machineOne.getWithdrawalSize();
+
         theBank.addMachine(machineTwo);
         machineTwo.addTransaction(-200);
-        machineTwo.getWithdrawalSize();
+
         theBank.addMachine(machineThree);
         machineThree.addTransaction(-500);
-        machineThree.getWithdrawalSize();
+
         theBank.totalWithdrawals();
         assertEquals(3,theBank.totalWithdrawals());
     }
@@ -120,14 +113,11 @@ public class BankTestSuite {
         theBank.addMachine(machineTwo);
         machineOne.addTransaction(400);
         machineOne.addTransaction(200);
-        machineOne.getDepositSize();
-        machineOne.getDepositSum();
+
+
         machineTwo.addTransaction(100);
         machineTwo.addTransaction(100);
-        machineTwo.getDepositSize();
-        machineTwo.getDepositSum();
-        theBank.totalDeposits();
-        theBank.totalDepositAverage();
+
         assertEquals(200,theBank.totalDepositAverage());
 
     }
@@ -137,12 +127,7 @@ public class BankTestSuite {
     public void shouldNotCountAverageZeroDeposits() {
         theBank.addMachine(machineOne);
         theBank.addMachine(machineTwo);
-        machineOne.getDepositSize();
-        machineOne.getDepositSum();
-        machineTwo.getDepositSize();
-        machineTwo.getDepositSum();
-        theBank.totalDeposits();
-        theBank.totalDepositAverage();
+
         assertEquals(0,theBank.totalDepositAverage());
     }
 
@@ -154,14 +139,8 @@ public class BankTestSuite {
         theBank.addMachine(machineTwo);
         machineOne.addTransaction(-400);
         machineOne.addTransaction(-200);
-        machineOne.getWithdrawalSize();
-        machineOne.getWithdrawalSum();
         machineTwo.addTransaction(-100);
         machineTwo.addTransaction(-100);
-        machineTwo.getWithdrawalSize();
-        machineTwo.getWithdrawalSum();
-        theBank.totalWithdrawals();
-        theBank.totalWithdrawalAverage();
         assertEquals(-200,theBank.totalWithdrawalAverage());
     }
 
@@ -170,12 +149,6 @@ public class BankTestSuite {
     public void shouldNotCountAverageZeroWithdrawals() {
         theBank.addMachine(machineOne);
         theBank.addMachine(machineTwo);
-        machineOne.getWithdrawalSize();
-        machineOne.getWithdrawalSum();
-        machineTwo.getWithdrawalSize();
-        machineTwo.getWithdrawalSum();
-        theBank.totalWithdrawals();
-        theBank.totalWithdrawalAverage();
         assertEquals(0,theBank.totalWithdrawalAverage());
     }
 }
