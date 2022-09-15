@@ -31,7 +31,7 @@ class DictionaryTestSuite {
         List<EnglishWord>expectedList=new ArrayList<>();
         expectedList.add(new EnglishWord(PartOfSpeech.NOUN,"play"));
         expectedList.add(new EnglishWord(PartOfSpeech.NOUN,"game"));
-        assertEqual(2,result.size());
+        assertEquals(2,result.size());
     }
     public void testFindEnglishWords_withPartOfSPeech() {
         //given
