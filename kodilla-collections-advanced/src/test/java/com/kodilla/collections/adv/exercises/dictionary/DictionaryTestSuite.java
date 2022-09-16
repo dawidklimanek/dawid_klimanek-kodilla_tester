@@ -33,7 +33,8 @@ class DictionaryTestSuite {
         expectedList.add(new EnglishWord(PartOfSpeech.NOUN,"game"));
         assertEquals(2,result.size());
     }
-    public void testFindEnglishWords_withPartOfSPeech() {
+    @Test
+    public void testFindEnglishWords_withPartOfSpeech() {
         //given
         Dictionary dictionary = new Dictionary();
         dictionary.addWord("stos", new EnglishWord(PartOfSpeech.NOUN, "stack"));
