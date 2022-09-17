@@ -8,7 +8,7 @@ public class FlightRepository {
         List <Flight> flights=new ArrayList<>();
 
         flights.add(new Flight("Boston","Katowice"));
-        flights.add(new Flight("Katowice","Boston"));
+        flights.add(new Flight("Boston","Warszawa"));
         flights.add(new Flight("New York", "Washington"));
         flights.add(new Flight("Warszawa","Katowice"));
         flights.add(new Flight("Poznań", "Warszawa"));
