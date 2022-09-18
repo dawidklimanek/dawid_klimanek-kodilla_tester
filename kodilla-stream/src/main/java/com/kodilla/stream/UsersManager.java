@@ -22,22 +22,22 @@ public class UsersManager {
 
     }
     public static List<String> filterUsersOlderThanAverageAge(int age) {
-        List<String> usersnames = UsersRepository.getUsersList() // wywołujemy metodę, która zwraca ArrayList obiektów User
+        List<String> usernames = UsersRepository.getUsersList() // wywołujemy metodę, która zwraca ArrayList obiektów User
                 .stream() // uruchamiamy struimeń. Wynikiem jest Stream, przez który przepływają obiekty User
                 .filter(user -> user.getAge() > age) // Jako argument przekazujemy wyr. lambda, które zwraca T lub F
                 .map(UsersManager :: getUserName)
                 .collect(Collectors.toList()); // kolektor tworzy z elementów przepływających przez strumień listę.
-        return usersnames;
+        return usernames;
     }
 
     // Na koniec wymyśl własny strumień, wykorzystując poznane zagadnienia i odpowiednio go przetestuj.
     public static List<String> filterIfUserPostedAnyPost() {
-        List<String> usersnames = UsersRepository.getUsersList()
+        List<String> usernames = UsersRepository.getUsersList()
                 .stream()
                 .filter(numberOfPost -> numberOfPost.getNumberOfPost() >0)
                 .map(UsersManager :: getUserName)
                 .collect(Collectors.toList());
-        return usersnames;
+        return usernames;
     }
 
     public static void main(String[] args) {
