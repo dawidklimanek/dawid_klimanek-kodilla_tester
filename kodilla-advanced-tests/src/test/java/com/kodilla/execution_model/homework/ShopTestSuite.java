@@ -47,7 +47,7 @@ class ShopTestSuite {
         assertEquals(7, shop.getSize());
     }
 
-    //czy przy pustym loginie zamawiającego zamienia na “Anonymous”,
+
     @Test
     public void shouldReplaceEmptyWhoOrderedWithAnonymous() {
         Order emptyBuyer = new Order(100,LocalDate.of(2020,9,22), "");
