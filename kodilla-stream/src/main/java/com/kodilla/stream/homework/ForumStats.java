@@ -1,26 +1,35 @@
 package com.kodilla.stream.homework;
 
-import com.kodilla.stream.User;
 import com.kodilla.stream.UsersRepository;
 
 public class ForumStats {
     public static void main(String[] args) {
 
-        double averageAboveForty = UsersRepository.getUsersList()
-                .stream()
-                .filter(u -> u.getAge() >= 40)
-                .mapToInt(n -> n.getNumberOfPost())
-                .average()
-                .getAsDouble();
+        double averageAboveForty = getAverageAboveForty();
         System.out.println("Average posts for users of age no less than 40:  " + averageAboveForty);
 
+        double averageBelowForty = getAverageBelowForty();
+        System.out.println("Average posts for users of age under 40:  " + averageBelowForty);
+    }
+
+    public static double getAverageBelowForty() {
         double averageBelowForty = UsersRepository.getUsersList()
                 .stream()
                 .filter(u -> u.getAge() < 40)
                 .mapToInt(n -> n.getNumberOfPost())
                 .average()
                 .getAsDouble();
-        System.out.println("Average posts for users of age under 40:  " + averageBelowForty);
+        return averageBelowForty;
+    }
+
+    public static double getAverageAboveForty() {
+        double averageAboveForty = UsersRepository.getUsersList()
+                .stream()
+                .filter(u -> u.getAge() >= 40)
+                .mapToInt(n -> n.getNumberOfPost())
+                .average()
+                .getAsDouble();
+        return averageAboveForty;
     }
 
 }
