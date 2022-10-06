@@ -1,6 +1,5 @@
 package com.kodilla.homework;
 
-import com.kodilla.optional.homework.Application;
 import com.kodilla.optional.homework.Student;
 import com.kodilla.optional.homework.Teacher;
 import org.junit.jupiter.api.Test;
@@ -27,5 +26,16 @@ public class ApplicationTest {
         teachers.add(teacher2);
         teachers.add(teacher3);
         assertEquals(3,teachers.size());
+    }
+    @Test
+    void shouldGetRealTeacherName(){
+        Teacher teacher = new Teacher("Kowalski");
+        Student student = new Student("Nowak",teacher);
+        assertEquals("Kowalski",student.getTeacherName());
+    }
+    @Test
+    void shouldGetDefaultTeacherName(){
+        Student student = new Student("Nowak",null);
+        assertEquals("<undefined>",student.getTeacherName());
     }
 }
