@@ -60,18 +60,17 @@ class ShopTestSuite {
     @Test
     public void shouldReturnObjectsByPermittedDates() {
         System.out.println("Now is: " + now);
-        shop.clear();
         shop.addOrder(laptop);
         shop.addOrder(microphone);
-        assertEquals(2,shop.filterOrdersByDate().size());
+        assertEquals(2,shop.filterOrdersByDate(LocalDate.of(2022,03,22),LocalDate.of(2033,04,8)).size());
     }
 
     //czy zwraca null/ alternatywną wiadomość, jeśli nie ma zamówień w podanym zakresie dat,
     @Test
-    public void shouldReturnNullIfNoObjectsPassFiltering() {
+    public void shouldReturnEmptyIfNoObjectsPassFiltering() {
         shop.clear();
         shop.addOrder(bustStatue);
-        assertNull(shop.filterOrdersByDate());
+        assertEquals(0,shop.filterOrdersByDate(LocalDate.of(2022,03,22),LocalDate.of(2033,04,8)).size());
     }
 
     //czy nie zwraca obiektów za daleko wstecz
@@ -80,7 +79,7 @@ class ShopTestSuite {
         System.out.println("Now is: " + now);
         shop.clear();
         shop.addOrder(new Order(300,LocalDate.now().minusDays(2),"TooEarly"));
-        assertNull(shop.filterOrdersByDate());
+        assertEquals(0,shop.filterOrdersByDate(LocalDate.of(1800,03,22),LocalDate.of(1900,04,8)).size());
     }
 
     //analogicznie: czy nie zwraca obiektu z przyszłości

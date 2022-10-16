@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class Shop {
     private Set<Order> orderList = new HashSet<>();
-    private List<Order> filteredOrders = new ArrayList<>();
+
 
     public void addOrder(Order order) {
         System.out.println(order);
@@ -22,38 +22,22 @@ public class Shop {
         orderList.add(order);
     }
 
-    public List<Order> filterOrdersByDate() {
-        filteredOrders = orderList
+    public List<Order> filterOrdersByDate(LocalDate startDate,LocalDate endDate) {
+        return orderList
                 .stream()
-                .filter(u -> u.getOrderDate().isAfter(LocalDate.now().minusDays(2)))
+                .filter(u -> u.getOrderDate().isAfter(startDate))
+                .filter((u->u.getOrderDate().isBefore((endDate))))
                 .collect(Collectors.toList());
-        System.out.println(filteredOrders);
-        for(Order order : orderList) {
-            if (filteredOrders.contains(order)) {
-                return filteredOrders;
-            }
-            System.out.println("No orders in the requested date range.");
-        } return null;
+
     }
 
-    public double returnsMinValueOfFilteredOrders() {
-        if (filteredOrders.isEmpty()) {
-            System.out.println("No records to filter.");
-            return 0;
-        }
-        Order minOrder = Collections.min(filteredOrders, Comparator.comparing(n -> n.getValue()));
-        System.out.println("Smallest order value filtered: " + minOrder.getValue());
-        return minOrder.getValue();
-    }
+    public List<Order> returnsMinAndMaksValueOfFilteredOrders(double min, double max) {
+        return orderList
+                .stream()
+                .filter(u-> u.getValue()>min)
+                .filter(u->u.getValue()<max)
+                .collect(Collectors.toList());
 
-    public double returnsMaxValueOfFilteredOrders() {
-        if (filteredOrders.isEmpty()) {
-            System.out.println("No records to filter.");
-            return 0;
-        }
-        Order maxOrder = Collections.max(filteredOrders, Comparator.comparing(n -> n.getValue()));
-        System.out.println("Greatest order value filtered: " + maxOrder.getValue());
-        return maxOrder.getValue();
     }
 
     public int getSize() {
