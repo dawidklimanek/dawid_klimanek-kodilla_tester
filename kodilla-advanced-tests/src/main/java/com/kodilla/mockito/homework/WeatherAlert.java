@@ -1,36 +1,73 @@
 package com.kodilla.mockito.homework;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.kodilla.notification.Client;
+import com.kodilla.notification.Notification;
+
+import java.util.*;
 
 public class WeatherAlert {
-    private Person person;
 
-    public void addPerson(Person person) {
-        this.persons.add(person);
 
+
+    private Map<Location, Set<Client>> clientAndLocationMap = new HashMap<>();
+
+
+    public void addDataToTheMap(Location location, Client client) {
+        if (this.clientAndLocationMap.containsKey(location)) {
+            this.clientAndLocationMap.get(location).add(client);
+        } else {
+            Set<Client> clients = new HashSet<>();
+            clients.add(client);
+            this.clientAndLocationMap.put(location, clients);
+        }
     }
 
-    private List<Person> persons = new ArrayList<>();
 
 
-    public void sendNotification(Notification notification) {
-        this.persons.forEach(person -> person.receive(notification));
+    public void removeSubscription(Location location, Client client) {
+        if (this.clientAndLocationMap.containsKey(location)) {
+            this.clientAndLocationMap.get(location).remove(client);
+        }
     }
 
-    public void addLocation(Location location) {
+    public void removeAllSubscriptions(Client client) {
+        clientAndLocationMap.entrySet().forEach(a -> a.getValue().remove(client));
     }
 
-    public void deleteAllLocations(Location location) {
-        this.persons.remove(location);
+
+    public void sendAlertToLocation(Alert alert, Location location) {
+        if (this.clientAndLocationMap.containsKey(location)) {
+            clientAndLocationMap.get(location).forEach(a -> a.receive((Notification) alert));
+        }
     }
 
-    public void removePerson(Person person) {
-        this.persons.remove(person);
+    public void sendAlertToGroup(Alert alert) {
+        this.clientAndLocationMap.values().forEach(a -> a.forEach(b -> b.receive((Notification) alert)));
     }
 
-    public void deleteLocation(Location location) {
-        this.persons.remove(location);
+
+    public void removeLocation(Location location){
+        this.clientAndLocationMap.remove(location);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        WeatherAlert that = (WeatherAlert) o;
+        return Objects.equals(clientAndLocationMap, that.clientAndLocationMap);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(clientAndLocationMap);
+    }
+
+    @Override
+    public String toString() {
+        return "AlertService{" +
+                "clientAndLocationMap=" + clientAndLocationMap +
+                '}';
 
     }
 }

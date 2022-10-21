@@ -1,77 +1,153 @@
 package com.kodilla.mockito.homework;
 
+import com.kodilla.notification.Client;
+import com.kodilla.notification.Notification;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 class WeatherAlertTestSuite {
-    WeatherAlert weatherAlert = new WeatherAlert();
-    Person person = Mockito.mock(Person.class);
-    Notification notification = Mockito.mock(Notification.class);
+    WeatherAlert alertService = new WeatherAlert();
+    Alert alert = Mockito.mock(Alert.class);
+    Client client = Mockito.mock(Client.class);
     Location location = Mockito.mock(Location.class);
 
-    //osoba może zapisać się do danej lokalizacji i otrzymywać subskrypcje
     @Test
-    public void personCanJoinInAndReceiveNotification() {
-        weatherAlert.addPerson(person);
-        weatherAlert.addLocation(location);
-        weatherAlert.sendNotification(notification);
-        Mockito.verify(person, Mockito.times(1)).receive(notification);
+    public void notSubscribedClientShouldNotReceiveAlert() {
+        //when
+        alertService.sendAlertToGroup(alert);
+        //then
+        Mockito.verify(client, Mockito.never()).receive((Notification) alert);
     }
 
-    //osoba może anulować subskrypcję z danej lokalizacji
     @Test
-    public void personCanDeleteLocationSubscripction() {
-        weatherAlert.sendNotification(notification);
-        weatherAlert.addLocation(location);
-        Mockito.verify(person, Mockito.never()).receive(notification);
+    public void clientSubscribedToOneLocationShouldReceiveOneAlertToLocation() {
+        //when
+        alertService.addDataToTheMap(location, client);
+        alertService.sendAlertToLocation(alert, location);
+        //then
+        Mockito.verify(client, Mockito.times(1)).receive((Notification) alert);
     }
 
-    //osoba może usunąc wszystkie lokalizacje i anulować subskrypcję
     @Test
-    public void personCanDeleteAllLocationAndStopSubscription() {
-        weatherAlert.deleteAllLocations(location);
-        weatherAlert.removePerson(person);
-        weatherAlert.sendNotification(notification);
-        Mockito.verify(person, Mockito.never()).receive(notification);
+    public void clientSubscribedTwiceToSameLocationShouldReceiveOneAlert() {
+        //when
+        alertService.addDataToTheMap(location, client);
+        alertService.addDataToTheMap(location, client);
+        alertService.sendAlertToLocation(alert, location);
+        //then
+        Mockito.verify(client, Mockito.times(1)).receive((Notification) alert);
     }
 
-    //powiadomienie dla danej lokalizacji tylko do wybranych osób
     @Test
-    public void shouldSpecificGroupOfPersonGetNotification() {
-        weatherAlert.addPerson(person);
-        weatherAlert.addLocation(location);
-        weatherAlert.sendNotification(notification);
-        Mockito.verify(person, Mockito.times(1)).receive(notification);
+    public void clientSubscribedToMoreLocationsShouldReceiveAlertToEachLocation() {
+        //given
+        Location location1 = Mockito.mock(Location.class);
+        Location location2 = Mockito.mock(Location.class);
+        //when
+        alertService.addDataToTheMap(location, client);
+        alertService.addDataToTheMap(location1, client);
+        alertService.addDataToTheMap(location2, client);
+        alertService.sendAlertToLocation(alert, location);
+        alertService.sendAlertToLocation(alert, location1);
+        alertService.sendAlertToLocation(alert, location2);
+        //then
+        Mockito.verify(client, Mockito.times(3)).receive((Notification) alert);
     }
 
-    //powiadomienie dla wszystklich osób
     @Test
-    public void shouldAllPersonGetNotification() {
-        Person firstPerson = Mockito.mock(Person.class);
-        Person secondPerson = Mockito.mock(Person.class);
-        Person thirdPerson = Mockito.mock(Person.class);
-        Person fourthPerson = Mockito.mock(Person.class);
-        Person fifthPerson = Mockito.mock(Person.class);
-        weatherAlert.addPerson(firstPerson);
-        weatherAlert.addPerson(secondPerson);
-        weatherAlert.addPerson(thirdPerson);
-        weatherAlert.addPerson(fourthPerson);
-        weatherAlert.addPerson(fifthPerson);
-
-        weatherAlert.sendNotification(notification);
-        Mockito.verify(firstPerson, Mockito.times(1)).receive(notification);
-        Mockito.verify(secondPerson, Mockito.times(1)).receive(notification);
-        Mockito.verify(thirdPerson, Mockito.times(1)).receive(notification);
-        Mockito.verify(fourthPerson, Mockito.times(1)).receive(notification);
-        Mockito.verify(fifthPerson, Mockito.times(1)).receive(notification);
+    public void clientsSubscribedToOneLocationShouldReceiveAlertToLocation() {
+        //given
+        Client client1 = Mockito.mock(Client.class);
+        Client client2 = Mockito.mock(Client.class);
+        //when
+        alertService.addDataToTheMap(location, client);
+        alertService.addDataToTheMap(location, client1);
+        alertService.addDataToTheMap(location, client2);
+        alertService.sendAlertToLocation(alert, location);
+        //then
+        Mockito.verify(client, Mockito.times(1)).receive((Notification) alert);
+        Mockito.verify(client1, Mockito.times(1)).receive((Notification) alert);
+        Mockito.verify(client2, Mockito.times(1)).receive((Notification) alert);
     }
 
-    //kasowanie danej lokalizacji
     @Test
-    public void shouldDeleteCurrentLocation() {
-        weatherAlert.deleteLocation(location);
-        weatherAlert.sendNotification(notification);
-        Mockito.verify(person, Mockito.never()).receive(notification);
+    public void clientsSubscribedToMoreLocationsShouldReceiveAlertsToLocations() {
+        //given
+        Client client1 = Mockito.mock(Client.class);
+        Client client2 = Mockito.mock(Client.class);
+        Location location1 = Mockito.mock(Location.class);
+        Location location2 = Mockito.mock(Location.class);
+        //when
+        alertService.addDataToTheMap(location, client);
+        alertService.addDataToTheMap(location, client1);
+        alertService.addDataToTheMap(location1, client1);
+        alertService.addDataToTheMap(location, client2);
+        alertService.addDataToTheMap(location2, client2);
+        alertService.sendAlertToLocation(alert, location);
+        alertService.sendAlertToLocation(alert, location1);
+        alertService.sendAlertToLocation(alert, location2);
+        //then
+        Mockito.verify(client, Mockito.times(1)).receive((Notification) alert);
+        Mockito.verify(client1, Mockito.times(2)).receive((Notification) alert);
+        Mockito.verify(client2, Mockito.times(2)).receive((Notification) alert);
+    }
+
+    @Test
+    public void clientsShouldReceiveGroupAlerts() {
+        //given
+        Client client1 = Mockito.mock(Client.class);
+        Client client2 = Mockito.mock(Client.class);
+        Location location1 = Mockito.mock(Location.class);
+        Location location2 = Mockito.mock(Location.class);
+        //when
+        alertService.addDataToTheMap(location, client);
+        alertService.addDataToTheMap(location, client1);
+        alertService.addDataToTheMap(location1, client1);
+        alertService.addDataToTheMap(location, client2);
+        alertService.addDataToTheMap(location2, client2);
+        alertService.sendAlertToGroup(alert);
+        //then
+        Mockito.verify(client, Mockito.times(1)).receive((Notification) alert);
+        Mockito.verify(client1, Mockito.times(2)).receive((Notification) alert);
+        Mockito.verify(client2, Mockito.times(2)).receive((Notification) alert);
+    }
+
+    @Test
+    public void clientShouldBeAbleToCancelSubscriptionFromLocation() {
+        //given
+        Location location1 = Mockito.mock(Location.class);
+        //when
+        alertService.addDataToTheMap(location, client);
+        alertService.addDataToTheMap(location1, client);
+        alertService.removeSubscription(location1, client);
+        alertService.sendAlertToLocation(alert, location);
+        alertService.sendAlertToLocation(alert, location1);
+        //then
+        Mockito.verify(client, Mockito.times(1)).receive((Notification) alert);
+    }
+
+    @Test
+    public void clientShouldBeAbleToCancelSubscriptionsAndStopReceivingNotifications() {
+        //given
+        Location location1 = Mockito.mock(Location.class);
+        //when
+        alertService.addDataToTheMap(location, client);
+        alertService.addDataToTheMap(location1, client);
+        alertService.removeAllSubscriptions(client);
+        alertService.sendAlertToLocation(alert, location);
+        alertService.sendAlertToLocation(alert, location1);
+        //then
+        Mockito.verify(client, Mockito.never()).receive((Notification) alert);
+    }
+
+    @Test
+    public void shouldBePossibleToDeleteLocation(){
+        //when
+        alertService.addDataToTheMap(location, client);
+        alertService.removeLocation(location);
+        alertService.sendAlertToLocation(alert, location);
+        //then
+        Mockito.verify(client, Mockito.never()).receive((Notification) alert);
     }
 }
 

@@ -10,8 +10,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import java.util.Arrays;
 import java.util.List;
 
-import static org.hamcrest.Matchers.notNullValue;
-
 
 @SpringBootTest
     class CarFactoryTestSuite {
@@ -51,7 +49,7 @@ import static org.hamcrest.Matchers.notNullValue;
             //when
             String carType = car.getCarType();
             //then
-            Assertions.assertThat(carType, notNullValue());
+            Assertions.assertNotNull(carType);
         }
     }
 

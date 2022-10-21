@@ -1,5 +1,5 @@
 package com.kodilla.mockito.homework;
 
 public interface Person {
-    void receive(Notification notification);
+    void receive(Alert alert);
 }
