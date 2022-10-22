@@ -10,4 +10,5 @@ public class KodillaRestApiApplication {
         SpringApplication.run(KodillaRestApiApplication.class, args);
     }
 
+
 }
