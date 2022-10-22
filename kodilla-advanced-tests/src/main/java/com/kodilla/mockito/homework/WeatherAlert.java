@@ -12,7 +12,7 @@ public class WeatherAlert {
     private Map<Location, Set<Client>> clientAndLocationMap = new HashMap<>();
 
 
-    public void addDataToTheMap(Location location, Client client) {
+    public void addDataToTheMap(Location location, Person client) {
         if (this.clientAndLocationMap.containsKey(location)) {
             this.clientAndLocationMap.get(location).add(client);
         } else {

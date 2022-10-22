@@ -35,7 +35,7 @@ class WeatherAlertTestSuite {
         alertService.addDataToTheMap(location, client);
         alertService.sendAlertToLocation(alert, location);
         //then
-        Mockito.verify(client, Mockito.times(1)).receive((Notification) alert);
+        Mockito.verify(client, Mockito.times(1)).receive(alert);
     }
 
     @Test
@@ -65,9 +65,9 @@ class WeatherAlertTestSuite {
         alertService.addDataToTheMap(location, client2);
         alertService.sendAlertToLocation(alert, location);
         //then
-        Mockito.verify(client, Mockito.times(1)).receive((Notification) alert);
-        Mockito.verify(client1, Mockito.times(1)).receive((Notification) alert);
-        Mockito.verify(client2, Mockito.times(1)).receive((Notification) alert);
+        Mockito.verify(client, Mockito.times(1)).receive(alert);
+        Mockito.verify(client1, Mockito.times(1)).receive(alert);
+        Mockito.verify(client2, Mockito.times(1)).receive(alert);
     }
 
     @Test
@@ -87,9 +87,9 @@ class WeatherAlertTestSuite {
         alertService.sendAlertToLocation(alert, location1);
         alertService.sendAlertToLocation(alert, location2);
         //then
-        Mockito.verify(client, Mockito.times(1)).receive((Notification) alert);
-        Mockito.verify(client1, Mockito.times(2)).receive((Notification) alert);
-        Mockito.verify(client2, Mockito.times(2)).receive((Notification) alert);
+        Mockito.verify(client, Mockito.times(1)).receive(alert);
+        Mockito.verify(client1, Mockito.times(2)).receive(alert);
+        Mockito.verify(client2, Mockito.times(2)).receive(alert);
     }
 
     @Test
@@ -107,9 +107,9 @@ class WeatherAlertTestSuite {
         alertService.addDataToTheMap(location2, client2);
         alertService.sendAlertToGroup(alert);
         //then
-        Mockito.verify(client, Mockito.times(1)).receive((Notification) alert);
-        Mockito.verify(client1, Mockito.times(2)).receive((Notification) alert);
-        Mockito.verify(client2, Mockito.times(2)).receive((Notification) alert);
+        Mockito.verify(client, Mockito.times(1)).receive(alert);
+        Mockito.verify(client1, Mockito.times(2)).receive(alert);
+        Mockito.verify(client2, Mockito.times(2)).receive(alert);
     }
 
     @Test
@@ -123,7 +123,7 @@ class WeatherAlertTestSuite {
         alertService.sendAlertToLocation(alert, location);
         alertService.sendAlertToLocation(alert, location1);
         //then
-        Mockito.verify(client, Mockito.times(1)).receive((Notification) alert);
+        Mockito.verify(client, Mockito.times(1)).receive(alert);
     }
 
     @Test
@@ -137,7 +137,7 @@ class WeatherAlertTestSuite {
         alertService.sendAlertToLocation(alert, location);
         alertService.sendAlertToLocation(alert, location1);
         //then
-        Mockito.verify(client, Mockito.never()).receive((Notification) alert);
+        Mockito.verify(client, Mockito.never()).receive(alert);
     }
 
     @Test
@@ -147,7 +147,7 @@ class WeatherAlertTestSuite {
         alertService.removeLocation(location);
         alertService.sendAlertToLocation(alert, location);
         //then
-        Mockito.verify(client, Mockito.never()).receive((Notification) alert);
+        Mockito.verify(client, Mockito.never()).receive(alert);
     }
 }
 
