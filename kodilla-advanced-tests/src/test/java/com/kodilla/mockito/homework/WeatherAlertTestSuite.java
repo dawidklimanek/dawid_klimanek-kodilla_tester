@@ -1,14 +1,12 @@
 package com.kodilla.mockito.homework;
 
-import com.kodilla.notification.Client;
-import com.kodilla.notification.Notification;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 class WeatherAlertTestSuite {
     WeatherAlert alertService = new WeatherAlert();
     Alert alert = Mockito.mock(Alert.class);
-    Client client = Mockito.mock(Client.class);
+    Person client = Mockito.mock(Person.class);
     Location location = Mockito.mock(Location.class);
 
     @Test
@@ -16,7 +14,7 @@ class WeatherAlertTestSuite {
         //when
         alertService.sendAlertToGroup(alert);
         //then
-        Mockito.verify(client, Mockito.never()).receive((Notification) alert);
+        Mockito.verify(client, Mockito.never()).receive(alert);
     }
 
     @Test
@@ -25,7 +23,7 @@ class WeatherAlertTestSuite {
         alertService.addDataToTheMap(location, client);
         alertService.sendAlertToLocation(alert, location);
         //then
-        Mockito.verify(client, Mockito.times(1)).receive((Notification) alert);
+        Mockito.verify(client, Mockito.times(1)).receive(alert);
     }
 
     @Test
@@ -51,14 +49,14 @@ class WeatherAlertTestSuite {
         alertService.sendAlertToLocation(alert, location1);
         alertService.sendAlertToLocation(alert, location2);
         //then
-        Mockito.verify(client, Mockito.times(3)).receive((Notification) alert);
+        Mockito.verify(client, Mockito.times(3)).receive(alert);
     }
 
     @Test
     public void clientsSubscribedToOneLocationShouldReceiveAlertToLocation() {
         //given
-        Client client1 = Mockito.mock(Client.class);
-        Client client2 = Mockito.mock(Client.class);
+        Person client1 = Mockito.mock(Person.class);
+        Person client2 = Mockito.mock(Person.class);
         //when
         alertService.addDataToTheMap(location, client);
         alertService.addDataToTheMap(location, client1);
@@ -73,8 +71,8 @@ class WeatherAlertTestSuite {
     @Test
     public void clientsSubscribedToMoreLocationsShouldReceiveAlertsToLocations() {
         //given
-        Client client1 = Mockito.mock(Client.class);
-        Client client2 = Mockito.mock(Client.class);
+        Person client1 = Mockito.mock(Person.class);
+        Person client2 = Mockito.mock(Person.class);
         Location location1 = Mockito.mock(Location.class);
         Location location2 = Mockito.mock(Location.class);
         //when
@@ -95,8 +93,8 @@ class WeatherAlertTestSuite {
     @Test
     public void clientsShouldReceiveGroupAlerts() {
         //given
-        Client client1 = Mockito.mock(Client.class);
-        Client client2 = Mockito.mock(Client.class);
+        Person client1 = Mockito.mock(Person.class);
+        Person client2 = Mockito.mock(Person.class);
         Location location1 = Mockito.mock(Location.class);
         Location location2 = Mockito.mock(Location.class);
         //when
