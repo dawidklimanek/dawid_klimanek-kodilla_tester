@@ -112,7 +112,7 @@ class ShopTestSuite {
     @Test
     public void shouldReturnTheRightMaxValueOfFilteredOrders() {
         System.out.println(shop.filterOrdersByDate());
-        assertEquals(750.5,shop.returnsMaxValueOfFilteredOrders());
+        assertEquals(750.5,shop.returnMaxValueOfFilteredOrders());
     }
 
 
