@@ -5,14 +5,13 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Random;
 
 
 @Configuration
     public class CarFactory {
 
-        Car car;
+
 
         @Bean
         public Car returnCar() {
@@ -30,24 +29,6 @@ import java.util.Random;
             return Season.values()[number];
         }
 
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            CarFactory that = (CarFactory) o;
-            return Objects.equals(car, that.car);
-        }
 
-        @Override
-        public int hashCode() {
-            return Objects.hash(car);
-        }
-
-        @Override
-        public String toString() {
-            return "CarFactory{" +
-                    "car=" + car +
-                    '}';
-        }
     }
 
