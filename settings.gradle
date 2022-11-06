@@ -11,4 +11,6 @@ include 'kodilla-advanced-testswwwwwww'
 include 'kodilla-advanced-tests'
 include 'kodilla-spring-basic'
 include 'kodilla-rest-api'
+include 'kodilla-sellenium'
+include 'kodilla-selenium'
 
